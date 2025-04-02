@@ -38,7 +38,7 @@ sudo apt-get install libcurl4 openssl liblzma5
    
 3. 确保二进制文件位于 PATH 环境变量中列出的目录下。
 
-   TapDB 二进制文件位于 tarball 的 bin/ 目录中。您可以执行以下任一操作：
+   TapDB 二进制文件位于 tarball 包中。您可以执行以下任一操作：
 
     - 将二进制文件复制到 PATH 变量中列出的目录中，例如 `/usr/local/bin`（根据需要使用您的安装目录来更新 `/path/to/the/tapdb-directory/`）
 
