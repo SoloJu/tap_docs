@@ -38,15 +38,15 @@
 
 通过复制底层数据生成的备份不支持副本集的时间点恢复，并且难以管理较大的分片集群。此外，这些备份更大，因为它们包括索引和重复的底层存储填充和碎片。相比之下，`tapdump` 创建的备份较小。
 
-## 使用 tapdump
+## 使用 mongodump 和 mongorestore
 
-`tapdump` 从 TapDB 数据库读取数据并创建高保真 BSON 文件，而 `taprestore` 工具可以使用这些文件来填充 TapDB 数据库。`tapdump` 和 `taprestore` 是备份和恢复小型 TapDB 部署的简单而高效的工具。
+`mongodump` 从 TapDB 数据库读取数据并创建高保真 BSON 文件，而 `mongorestore` 工具可以使用这些文件来填充 TapDB 数据库。`mongodump` 和 `mongorestore` 是备份和恢复小型 TapDB 部署的简单而高效的工具。
 
-`tapdump` 和 `taprestore` 针对正在运行的 TapDB 进程进行操作，并且可以直接操作底层数据文件。默认情况下，`tapdump` 不捕获本地数据库的内容。
+`mongodump` 和 `mongorestore` 针对正在运行的 TapDB 进程进行操作，并且可以直接操作底层数据文件。默认情况下，`mongodump` 不捕获本地数据库的内容。
 
-`tapdump` 仅捕获数据库中的文档。生成的备份节省空间，但 `taprestore` 或 TapDB 必须在恢复数据后重建索引。
+`mongodump` 仅捕获数据库中的文档。生成的备份节省空间，但 `mongorestore` 或 TapDB 必须在恢复数据后重建索引。
 
-连接到 TapDB 实例时，`tapdump` 可能会对 TapDB 性能产生不利影响。如果数据大于系统内存，查询会将工作集挤出内存，从而导致页面错误。
+连接到 TapDB 实例时，`mongodump` 可能会对 TapDB 性能产生不利影响。如果数据大于系统内存，查询会将工作集挤出内存，从而导致页面错误。
 
-在 `tapdump` 捕获输出时，应用程序可以继续修改数据。对于副本集，`tapdump` 提供 `--oplog` 选项，以在其输出的 Oplog 条目中包含 `tapdump` 操作期间出现的条目。这允许相应的 `taprestore` 操作重放捕获的 Oplog。要恢复使用 `--oplog` 创建的备份，请使用 `taprestore` 和 `--oplogReplay` 选项。
+在 `mongodump` 捕获输出时，应用程序可以继续修改数据。对于副本集，`mongodump` 提供 `--oplog` 选项，以在其输出的 Oplog 条目中包含 `mongodump` 操作期间出现的条目。这允许相应的 `mongorestore` 操作重放捕获的 Oplog。要恢复使用 `--oplog` 创建的备份，请使用 `mongorestore` 和 `--oplogReplay` 选项。
 
