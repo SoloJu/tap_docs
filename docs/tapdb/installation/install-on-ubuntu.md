@@ -78,7 +78,7 @@ sudo apt-get install libcurl4 openssl liblzma5
     启动 TapDB 进程的用户必须具有对这些目录的读取和写入权限。例如，如果你打算自己运行 TapDB：
 
     ```bash
-    sudo chown `whoami` /var/lib/tap     # Or substitute another user
+    sudo chown `whoami` /var/lib/tapdb     # Or substitute another user
     sudo chown `whoami` /var/log/tapdb   # Or substitute another user
     ```
 
@@ -87,14 +87,14 @@ sudo apt-get install libcurl4 openssl liblzma5
     要运行 TapDB，请在系统提示符下运行tapdb进程。
 
     ```bash
-    tapdb --dbpath /var/lib/tap --logpath /var/log/tapdb/tapdb.log --fork
+    tapdb --dbpath /var/lib/tapdb --logpath /var/log/tapdb/tapdb.log --fork
     ```
 
     有关命令行选项--dbpath和--logpath的详细信息，请参阅选项。
 
 3. 验证 TapDB 是否已成功启动。
 
-   检查日志文件 `/var/log/TapDB/tapdb.log` 中以下行的进程输出，验证 TapDB 是否成功启动：
+   检查日志文件 `/var/log/tapdb/tapdb.log` 中以下行的进程输出，验证 TapDB 是否成功启动：
 
     ```bash
     [initandlisten] waiting for connections on port 27017
